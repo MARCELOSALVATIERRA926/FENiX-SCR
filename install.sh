@@ -2,7 +2,7 @@
 
 module="$(pwd)/module"
 rm -rf ${module}
-wget -O ${module} "https://raw.githubusercontent.com/rudi9999/Herramientas/main/module/module" &>/dev/null
+wget -O ${module} "https://github.com/MARCELOSALVATIERRA926/FENIX-VPS/Herramientas/main/module/module" &>/dev/null
 [[ ! -e ${module} ]] && exit
 chmod +x ${module} &>/dev/null
 source ${module}
@@ -23,14 +23,14 @@ fi
 
 trap "CTRL_C" INT TERM EXIT
 
-ADMRufu="/etc/ADMRufu" && [[ ! -d ${ADMRufu} ]] && mkdir ${ADMRufu}
-ADM_inst="${ADMRufu}/install" && [[ ! -d ${ADM_inst} ]] && mkdir ${ADM_inst}
-tmp="${ADMRufu}/tmp" && [[ ! -d ${tmp} ]] && mkdir ${tmp}
+ADMRufu="/etc/FENIX-VPS" && [[ ! -d ${FENIX-VPS} ]] && mkdir ${FENIX-VPS}
+ADM_inst="${FENIX-VPS}/install" && [[ ! -d ${ADM_inst} ]] && mkdir ${ADM_inst}
+tmp="${FENIX-VPS}/tmp" && [[ ! -d ${tmp} ]] && mkdir ${tmp}
 SCPinstal="$HOME/install"
 
 #rm -rf /etc/localtime &>/dev/null
 #ln -s /usr/share/zoneinfo/America/Argentina/Tucuman /etc/localtime &>/dev/null
-cp -f $0 ${ADMRufu}/install.sh
+cp -f $0 ${FENXRU}/install.sh
 rm $(pwd)/$0 &> /dev/null
 if [[ $(which install-LIC) = "" ]]; then
   wget -O /usr/bin/install-LIC 'https://github.com/rudi9999/Rufu-LIC/raw/main/install-LIC'; chmod +x /usr/bin/install-LIC &>/dev/null
@@ -63,7 +63,7 @@ fixDeb12Ubu24(){
   	_glibc=$(ldd --version|head -1|grep -o '[0-9]\+\.[0-9]\+'|sed 's/\.//g'|head -1)
   
   	if [[ -n $_glibc && $_glibc -ge 235 ]]; then
-  		wget -O /root/fix https://github.com/rudi9999/ADMRufu/raw/refs/heads/main/fix && chmod 755 /root/fix && /root/fix
+  		wget -O /root/fix https://github.com/MARCELOSALVATIERRA926/FENIX-VPS/raw/refs/heads/main/fix && chmod 755 /root/fix && /root/fix
   	else
   	    echo "Glibc es inferior a 2.35 o no se pudo determinar la versión."
   	    echo "Por lo que no se puede aplicar el fix debian12/ubuntu24"
@@ -72,7 +72,7 @@ fixDeb12Ubu24(){
 }
 
 repo_install(){
-  link="https://raw.githubusercontent.com/rudi9999/ADMRufu/main/Repositorios/$VERSION_ID.list"
+  link="https://github.com/MARCELOSALVATIERRA926/FENIX-VPS/main/Repositorios/$VERSION_ID.list"
   case $VERSION_ID in
     8*|9*|10*|11*|16.04*|18.04*|20.04*|20.10*|21.04*|21.10*|22.04*) [[ ! -e /etc/apt/sources.list.back ]] && cp /etc/apt/sources.list /etc/apt/sources.list.back
                                                                     wget -O /etc/apt/sources.list ${link} &>/dev/null;;
@@ -125,8 +125,8 @@ dependencias(){
 verificar_arq(){
   unset ARQ
   case $1 in
-    menu|menu_inst.sh|tool_extras.sh|chekup.sh|bashrc)ARQ="${ADMRufu}";;
-    ADMRufu)ARQ="/usr/bin";;
+    menu|menu_inst.sh|tool_extras.sh|chekup.sh|bashrc)ARQ="${FENIX-VPS}";;
+    FENIX-VPS)ARQ="/usr/bin";;
     message.txt)ARQ="${tmp}";;
     *)ARQ="${ADM_inst}";;
   esac
@@ -138,31 +138,31 @@ error_fun(){
   msg -bar3
   #print_center -verm "ERROR de enlace VPS<-->GENERADOR"
   print_center -verm "Falla aldescargar $1"
-  print_center -ama "Reportar con el administrador @Rufu99"
+  print_center -ama "Reportar con el administrador @FENIX-VPS"
   msg -bar3
   [[ -d ${SCPinstal} ]] && rm -rf ${SCPinstal}
   exit
 }
 
 post_reboot(){
-  echo 'clear; sleep 2; /etc/ADMRufu/install.sh --continue' >> /root/.bashrc
-  title "INSTALADOR ADMRufu"
+  echo 'clear; sleep 2; /etc/FENIX-VPS/install.sh --continue' >> /root/.bashrc
+  title "INSTALADOR FENIX-VPS"
   print_center -ama "La instalacion continuara\ndespues del reinicio!!!"
   msg -bar
 }
 
 install_start(){
-  title "INSTALADOR ADMRufu"
+  title "INSTALADOR FENIX-VPS"
   print_center -ama "A continuacion se actualizaran los paquetes\ndel systema. Esto podria tomar tiempo,\ny requerir algunas preguntas\npropias de las actualizaciones."
   msg -bar3
   read -rp "$(msg -verm2 " Desea continuar? [S/N]:") " -e -i S opcion
   [[ "$opcion" != @(s|S) ]] && stop_install
-  title "INSTALADOR ADMRufu"
+  title "INSTALADOR FENIX-VPS"
   print_center -ama 'Esto modificara la hora y fecha automatica\nsegun la Zona horaria establecida.'
   msg -bar
   read -rp "$(msg -ama " Modificar la zona horaria? [S/N]:") " -e -i N opcion
-  [[ "$opcion" != @(n|N) ]] && source <(curl -sSL "https://raw.githubusercontent.com/rudi9999/ADMRufu/main/online/timeZone.sh")
-  title "INSTALADOR ADMRufu"
+  [[ "$opcion" != @(n|N) ]] && source <(curl -sSL "https://github.com/MARCELOSALVATIERRA926/FENIX-VPS/main/online/timeZone.sh")
+  title "INSTALADOR FENIX-VPS"
   repo_install
   mysis=$(echo "$VERSION_ID"|cut -d '.' -f1)
   #[[ ! $mysis = '22' ]] && add-apt-repository -y ppa:ondrej/php &>/dev/null
@@ -171,7 +171,7 @@ install_start(){
 }
 
 install_continue(){
-  title "INSTALADOR ADMRufu"
+  title "INSTALADOR FENIX-VPS"
   print_center -ama "$PRETTY_NAME"
   print_center -verd "INSTALANDO DEPENDENCIAS"
   msg -bar3
@@ -196,7 +196,7 @@ do
                   install_continue
                   break;;
     -u|--update)install_start
-                rm -rf /etc/ADMRufu/tmp/style
+                rm -rf /etc/FENIX-VPS/tmp/style
                 install_continue
                 break;;
     -t|--test)break;;
@@ -204,13 +204,13 @@ do
   esac
 done
 
-title "INSTALADOR ADMRufu"
+title "INSTALADOR FENIX-VPS"
 fun_ip
 
 msg -ne " Verificando Datos: "
 cd $HOME
 
-arch='ADMRufu
+arch='FENIX-VPS
 bashrc
 budp.sh
 cert.sh
@@ -243,14 +243,14 @@ wireguard.sh
 ws-cdn.sh
 WS-Proxy.js'
 
-lisArq="https://raw.githubusercontent.com/rudi9999/ADMRufu/refs/heads/main/old"
+lisArq="https://github.com/MARCELOSALVATIERRA926/FENIX-VPS/refs/heads/main/old"
 
-ver=$(curl -sSL "https://raw.githubusercontent.com/rudi9999/ADMRufu/main/vercion")
-echo "$ver" > ${ADMRufu}/vercion
-echo -e "Idioma=es_ES.utf8\nRutaLocales=locale" > ${ADMRufu}/lang.ini
+ver=$(curl -sSL "https://github.com/MARCELOSALVATIERRA926/FENIX-VPS/main/vercion")
+echo "$ver" > ${FENIX-VPS}/vercion
+echo -e "Idioma=es_ES.utf8\nRutaLocales=locale" > ${FENIX-VPS}/lang.ini
 
-title -ama '[Proyect by @Rufu99]'
-print_center -ama 'INSTALANDO SCRIPT ADMRufu'
+title -ama '[Proyect by @FENIX-VPS]'
+print_center -ama 'INSTALANDO SCRIPT FENIX-VPS'
 sleep 2; del 1
 
 [[ ! -d ${SCPinstal} ]] && mkdir ${SCPinstal}
@@ -268,23 +268,23 @@ for arqx in $(echo $arch); do
   }
 done
 
-url='https://github.com/rudi9999/ADMRufu/raw/main/Utils'
+url='https://github.com/MARCELOSALVATIERRA926/FENIX-VPS/raw/main/Utils'
 
-autoStart="${ADMRufu}/bin" && [[ ! -d $autoStart ]] && mkdir $autoStart
-varEntorno="${ADMRufu}/sbin" && [[ ! -d $varEntorno ]] && mkdir $varEntorno
+autoStart="${FENIX-VPS}/bin" && [[ ! -d $autoStart ]] && mkdir $autoStart
+varEntorno="${FENIX-VPS}/sbin" && [[ ! -d $varEntorno ]] && mkdir $varEntorno
 
 cat <<EOF>$varEntorno/ls-cmd
 #!/bin/bash
 echo 'menu'
-ls /etc/ADMRufu/sbin|sed 's/ /\n/'
+ls /etc/FENIX-VPS/sbin|sed 's/ /\n/'
 EOF
 chmod +x $varEntorno/ls-cmd
 
 wget --no-cache -O $autoStart/autoStart "$url/autoStart/autoStart" &>/dev/null; chmod +x $autoStart/autoStart
 wget --no-cache -O $autoStart/auto-update "$url/auto-update/auto-update" &>/dev/null; chmod +x $autoStart/auto-update
 
-wget --no-cache -O ${ADMRufu}/install/udp-custom "$url/udp-custom/udp-custom" &>/dev/null; chmod +x ${ADMRufu}/install/udp-custom
-wget --no-cache -O ${ADMRufu}/install/psiphon-manager "$url/psiphon/psiphon-manager" &>/dev/null; chmod +x ${ADMRufu}/install/psiphon-manager
+wget --no-cache -O ${FENIX-VPS}/install/udp-custom "$url/udp-custom/udp-custom" &>/dev/null; chmod +x ${FENIX-VPS}/install/udp-custom
+wget --no-cache -O ${FENIX-VPS}/install/psiphon-manager "$url/psiphon/psiphon-manager" &>/dev/null; chmod +x ${FENIX-VPS}/install/psiphon-manager
 wget --no-cache -O ${varEntorno}/dropBear "$url/dropBear/dropBear" &>/dev/null; chmod +x ${varEntorno}/dropBear
 
 wget --no-cache -O ${varEntorno}/protocolsUDP "$url/protocolsUDP/protocolsUDP" &>/dev/null;           chmod +x ${varEntorno}/protocolsUDP 
@@ -315,15 +315,15 @@ wget --no-cache -O ${varEntorno}/userTOKEN    "$url/user-managers/userTOKEN/user
 wget --no-cache -O ${autoStart}/limit    "$url/user-managers/limitador/limit" &>/dev/null;   chmod +x ${autoStart}/limit
 ${autoStart}/limit
 
-wget --no-cache -O /etc/ADMRufu/uninstall "https://github.com/rudi9999/ADMRufu/raw/main/uninstall" &>/dev/null; chmod +x /etc/ADMRufu/uninstall
+wget --no-cache -O /etc/FENIX-VPS/uninstall "https://github.com/MARCELOSALVATIERRA926/FENIX-VPS/raw/main/uninstall" &>/dev/null; chmod +x /etc/FENIX-VPS/uninstall
 
 if [[ -e $autoStart/autoStart ]]; then
-  $autoStart/autoStart -e /etc/ADMRufu/autoStart
+  $autoStart/autoStart -e /etc/FENIX-VPS/autoStart
 fi
 
 #profileDir="/etc/profile.d" && [[ ! -d ${profileDir} ]] && mkdir ${profileDir}
 #echo '#!/bin/bash
-#export PATH="$PATH:/etc/ADMRufu/sbin"' > /etc/profile.d/rufu.sh
+#export PATH="$PATH:/etc/FENIX-VPS/sbin"' > /etc/profile.d/rufu.sh
 #chmod +x /etc/profile.d/rufu.sh
 rm -rf /etc/profile.d/rufu.sh
 
@@ -340,18 +340,18 @@ rm $HOME/lista-arq
 [[ -d ${SCPinstal} ]] && rm -rf ${SCPinstal}
 rm -rf /usr/bin/menu
 rm -rf /usr/bin/adm
-ln -s /usr/bin/ADMRufu /usr/bin/menu
-ln -s /usr/bin/ADMRufu /usr/bin/adm
-ln -s /etc/ADMRufu/reseller /etc/ADMRufu/tmp/message.txt
+ln -s /usr/bin/FENIX-VPS /usr/bin/menu
+ln -s /usr/bin/FENIX-VPS /usr/bin/adm
+ln -s /etc/FENIX-VPS/reseller /etc/FENIX-VPS/tmp/message.txt
 sed -i '/Rufu/d' /etc/bash.bashrc
 sed -i '/Rufu/d' /root/.bashrc
-echo '[[ -e /etc/ADMRufu/bashrc ]] && source /etc/ADMRufu/bashrc' >> /etc/bash.bashrc
+echo '[[ -e /etc/FENIX-VPS/bashrc ]] && source /etc/FENIX-VPS/bashrc' >> /etc/bash.bashrc
 locale-gen en_US.UTF-8
 update-locale LANG=en_US.UTF-8 LANGUAGE=en LC_ALL=en_US.UTF-8
 echo -e "LANG=en_US.UTF-8\nLANGUAGE=en\nLC_ALL=en_US.UTF-8" > /etc/default/locale
 [[ ! $(cat /etc/shells|grep "/bin/false") ]] && echo -e "/bin/false" >> /etc/shells
 clear
-title "-- ADMRufu INSTALADO --"
+title "-- FENIX-VPS INSTALADO --"
 
-mv -f ${module} /etc/ADMRufu/module
+mv -f ${module} /etc/FENIX-VPS/module
 time_reboot "10"
