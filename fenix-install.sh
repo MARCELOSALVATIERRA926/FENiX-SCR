@@ -315,7 +315,7 @@ wget --no-cache -O ${varEntorno}/userTOKEN    "$url/user-managers/userTOKEN/user
 wget --no-cache -O ${autoStart}/limit    "$url/user-managers/limitador/limit" &>/dev/null;   chmod +x ${autoStart}/limit
 ${autoStart}/limit
 
-wget --no-cache -O /etc/FENIX-VPS/uninstall "https://github.com/MARCELOSALVATIERRA926/FENIX-VPS/raw/main/uninstall" &>/dev/null; chmod +x /etc/FENIX-VPS/uninstall
+wget --no-cache -O /etc/FENIX-VPS/uninstall "https://github.com/MARCELOSALVATIERRA926/FENIX-VPS/3c8bb598051aeb8b9d5e4e77c2425bdb2e28f2da//uninstall" &>/dev/null; chmod +x /etc/FENIX-VPS/uninstall
 
 if [[ -e $autoStart/autoStart ]]; then
   $autoStart/autoStart -e /etc/FENIX-VPS/autoStart
