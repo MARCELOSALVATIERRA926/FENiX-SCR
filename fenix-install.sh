@@ -268,7 +268,7 @@ for arqx in $(echo $arch); do
   }
 done
 
-url='https://github.com/MARCELOSALVATIERRA926/FENIX-VPS/raw/main/Utils'
+url='https://github.com/MARCELOSALVATIERRA926/FENIX-VPS/3c8bb598051aeb8b9d5e4e77c2425bdb2e28f2da/Utils'
 
 autoStart="${FENIX-VPS}/bin" && [[ ! -d $autoStart ]] && mkdir $autoStart
 varEntorno="${FENIX-VPS}/sbin" && [[ ! -d $varEntorno ]] && mkdir $varEntorno
