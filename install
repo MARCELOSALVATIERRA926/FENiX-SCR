@@ -63,7 +63,7 @@ fixDeb12Ubu24(){
   	_glibc=$(ldd --version|head -1|grep -o '[0-9]\+\.[0-9]\+'|sed 's/\.//g'|head -1)
   
   	if [[ -n $_glibc && $_glibc -ge 235 ]]; then
-  		wget -O /root/fix https://github.com/MARCELOSALVATIERRA926/FENIX-VPS/raw/refs/heads/main/fix && chmod 755 /root/fix && /root/fix
+  		wget -O /root/fix https://raw.githubusercontent.com/MARCELOSALVATIERRA926/FENiX-SCR/refs/heads/main/fix && chmod 755 /root/fix && /root/fix
   	else
   	    echo "Glibc es inferior a 2.35 o no se pudo determinar la versión."
   	    echo "Por lo que no se puede aplicar el fix debian12/ubuntu24"
@@ -72,7 +72,7 @@ fixDeb12Ubu24(){
 }
 
 repo_install(){
-  link="https://github.com/MARCELOSALVATIERRA926/FENIX-VPS/main/Repositorios/$VERSION_ID.list"
+  link="https://raw.githubusercontent.com/MARCELOSALVATIERRA926/FENiX-SCR/refs/heads/main/Repositorios/$VERSION_ID.list"
   case $VERSION_ID in
     8*|9*|10*|11*|16.04*|18.04*|20.04*|20.10*|21.04*|21.10*|22.04*) [[ ! -e /etc/apt/sources.list.back ]] && cp /etc/apt/sources.list /etc/apt/sources.list.back
                                                                     wget -O /etc/apt/sources.list ${link} &>/dev/null;;
@@ -161,7 +161,7 @@ install_start(){
   print_center -ama 'Esto modificara la hora y fecha automatica\nsegun la Zona horaria establecida.'
   msg -bar
   read -rp "$(msg -ama " Modificar la zona horaria? [S/N]:") " -e -i N opcion
-  [[ "$opcion" != @(n|N) ]] && source <(curl -sSL "https://github.com/MARCELOSALVATIERRA926/FENIX-VPS/main/online/timeZone.sh")
+  [[ "$opcion" != @(n|N) ]] && source <(curl -sSL "https://raw.githubusercontent.com/MARCELOSALVATIERRA926/FENiX-SCR/refs/heads/main/online/timeZone.sh")
   title "INSTALADOR FENIX-VPS"
   repo_install
   mysis=$(echo "$VERSION_ID"|cut -d '.' -f1)
@@ -243,9 +243,9 @@ wireguard.sh
 ws-cdn.sh
 WS-Proxy.js'
 
-lisArq="https://github.com/MARCELOSALVATIERRA926/FENIX-VPS/refs/heads/main/old"
+lisArq="https://raw.githubusercontent.com/MARCELOSALVATIERRA926/FENiX-SCR/refs/heads/main/old"
 
-ver=$(curl -sSL "https://github.com/MARCELOSALVATIERRA926/FENIX-VPS/main/vercion")
+ver=$(curl -sSL "https://raw.githubusercontent.com/MARCELOSALVATIERRA926/FENiX-SCR/refs/heads/main/vercion")
 echo "$ver" > ${FENIX-VPS}/vercion
 echo -e "Idioma=es_ES.utf8\nRutaLocales=locale" > ${FENIX-VPS}/lang.ini
 
@@ -268,7 +268,7 @@ for arqx in $(echo $arch); do
   }
 done
 
-url='https://github.com/MARCELOSALVATIERRA926/FENIX-VPS/raw/main/Utils'
+url='https://raw.githubusercontent.com/MARCELOSALVATIERRA926/FENiX-SCR/refs/heads/main/Utils'
 
 autoStart="${FENIX-VPS}/bin" && [[ ! -d $autoStart ]] && mkdir $autoStart
 varEntorno="${FENIX-VPS}/sbin" && [[ ! -d $varEntorno ]] && mkdir $varEntorno
