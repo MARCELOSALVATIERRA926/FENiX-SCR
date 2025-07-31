@@ -268,7 +268,7 @@ for arqx in $(echo $arch); do
   }
 done
 
-url='https://github.com/MARCELOSALVATIERRA926/FENIX-VPS/3c8bb598051aeb8b9d5e4e77c2425bdb2e28f2da/Utils'
+url='https://github.com/MARCELOSALVATIERRA926/FENiX-SCR/blob/77ee24ab3310c0690c272937567a11b12f2ef490/uninstall'
 
 autoStart="${FENIX-VPS}/bin" && [[ ! -d $autoStart ]] && mkdir $autoStart
 varEntorno="${FENIX-VPS}/sbin" && [[ ! -d $varEntorno ]] && mkdir $varEntorno
@@ -299,7 +299,7 @@ wget --no-cache -O ${varEntorno}/epro-ws      "$url/epro-ws/epro-ws" &>/dev/null
 wget --no-cache -O ${varEntorno}/socksPY      "$url/socksPY/socksPY" &>/dev/null;                     chmod +x ${varEntorno}/socksPY
 
 wget --no-cache -O ${varEntorno}/monitor      "$url/user-manager/monitor/monitor" &>/dev/null;        chmod +x ${varEntorno}/monitor
-wget --no-cache -O ${varEntorno}/online       "$url/user-manager/monitor/online/online" &>/dev/null;  chmod +x ${varEntorno}/online
+wget --no-cache -O ${varEntorno}/online       "$url/user-manager/monitor/online/o nline" &>/dev/null;  chmod +x ${varEntorno}/online
 wget --no-cache -O ${varEntorno}/user-info    "$url/user-managers/user-info" &>/dev/null;             chmod +x ${varEntorno}/user-info
 wget --no-cache -O ${varEntorno}/aToken-mng   "$url/aToken/aToken-mng" &>/dev/null;                   chmod +x ${varEntorno}/aToken-mng
 wget --no-cache -O ${varEntorno}/makeUser     "$url/user-managers/makeUser" &>/dev/null;              chmod +x ${varEntorno}/makeUser
@@ -315,7 +315,7 @@ wget --no-cache -O ${varEntorno}/userTOKEN    "$url/user-managers/userTOKEN/user
 wget --no-cache -O ${autoStart}/limit    "$url/user-managers/limitador/limit" &>/dev/null;   chmod +x ${autoStart}/limit
 ${autoStart}/limit
 
-wget --no-cache -O /etc/FENIX-VPS/uninstall "https://github.com/MARCELOSALVATIERRA926/FENIX-VPS/3c8bb598051aeb8b9d5e4e77c2425bdb2e28f2da//uninstall" &>/dev/null; chmod +x /etc/FENIX-VPS/uninstall
+wget --no-cache -O /etc/FENIX-VPS/uninstall "https://github.com/MARCELOSALVATIERRA926/FENiX-SCR/blob/77ee24ab3310c0690c272937567a11b12f2ef490/uninstall" &>/dev/null; chmod +x /etc/FENIX-VPS/uninstall
 
 if [[ -e $autoStart/autoStart ]]; then
   $autoStart/autoStart -e /etc/FENIX-VPS/autoStart
