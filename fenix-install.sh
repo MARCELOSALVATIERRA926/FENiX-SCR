@@ -72,7 +72,7 @@ fixDeb12Ubu24(){
 }
 
 repo_install(){
-  link="https://github.com/MARCELOSALVATIERRA926/FENIX-VPS/main/Repositorios/$VERSION_ID.list"
+  link="https://github.com/MARCELOSALVATIERRA926/FENIX-VPS/3c8bb598051aeb8b9d5e4e77c2425bdb2e28f2da/Repositorios/$VERSION_ID.list"
   case $VERSION_ID in
     8*|9*|10*|11*|16.04*|18.04*|20.04*|20.10*|21.04*|21.10*|22.04*) [[ ! -e /etc/apt/sources.list.back ]] && cp /etc/apt/sources.list /etc/apt/sources.list.back
                                                                     wget -O /etc/apt/sources.list ${link} &>/dev/null;;
@@ -161,7 +161,7 @@ install_start(){
   print_center -ama 'Esto modificara la hora y fecha automatica\nsegun la Zona horaria establecida.'
   msg -bar
   read -rp "$(msg -ama " Modificar la zona horaria? [S/N]:") " -e -i N opcion
-  [[ "$opcion" != @(n|N) ]] && source <(curl -sSL "https://github.com/MARCELOSALVATIERRA926/FENIX-VPS/main/online/timeZone.sh")
+  [[ "$opcion" != @(n|N) ]] && source <(curl -sSL "https://github.com/MARCELOSALVATIERRA926/FENIX-VPS/3c8bb598051aeb8b9d5e4e77c2425bdb2e28f2da/online/timeZone.sh")
   title "INSTALADOR FENIX-VPS"
   repo_install
   mysis=$(echo "$VERSION_ID"|cut -d '.' -f1)
@@ -245,7 +245,7 @@ WS-Proxy.js'
 
 lisArq="https://github.com/MARCELOSALVATIERRA926/FENIX-VPS/refs/heads/main/old"
 
-ver=$(curl -sSL "https://github.com/MARCELOSALVATIERRA926/FENIX-VPS/main/vercion")
+ver=$(curl -sSL "https://github.com/MARCELOSALVATIERRA926/FENIX-VPS/3c8bb598051aeb8b9d5e4e77c2425bdb2e28f2da/vercion")
 echo "$ver" > ${FENIX-VPS}/vercion
 echo -e "Idioma=es_ES.utf8\nRutaLocales=locale" > ${FENIX-VPS}/lang.ini
 
