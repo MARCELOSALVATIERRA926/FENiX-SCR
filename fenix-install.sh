@@ -63,7 +63,7 @@ fixDeb12Ubu24(){
   	_glibc=$(ldd --version|head -1|grep -o '[0-9]\+\.[0-9]\+'|sed 's/\.//g'|head -1)
   
   	if [[ -n $_glibc && $_glibc -ge 235 ]]; then
-  		wget -O /root/fix https://github.com/MARCELOSALVATIERRA926/FENIX-VPS/raw/refs/heads/main/fix && chmod 755 /root/fix && /root/fix
+  		wget -O /root/fix https://raw.githubusercontent.com/MARCELOSALVATIERRA926/FENiX-SCR/refs/heads/main/fix && chmod 755 /root/fix && /root/fix
   	else
   	    echo "Glibc es inferior a 2.35 o no se pudo determinar la versión."
   	    echo "Por lo que no se puede aplicar el fix debian12/ubuntu24"
@@ -72,7 +72,7 @@ fixDeb12Ubu24(){
 }
 
 repo_install(){
-  link="https://github.com/MARCELOSALVATIERRA926/FENIX-VPS/3c8bb598051aeb8b9d5e4e77c2425bdb2e28f2da/Repositorios/$VERSION_ID.list"
+  link="https://raw.githubusercontent.com/MARCELOSALVATIERRA926/FENiX-SCR/refs/heads/main/Repositorios/$VERSION_ID.list"
   case $VERSION_ID in
     8*|9*|10*|11*|16.04*|18.04*|20.04*|20.10*|21.04*|21.10*|22.04*) [[ ! -e /etc/apt/sources.list.back ]] && cp /etc/apt/sources.list /etc/apt/sources.list.back
                                                                     wget -O /etc/apt/sources.list ${link} &>/dev/null;;
@@ -161,7 +161,7 @@ install_start(){
   print_center -ama 'Esto modificara la hora y fecha automatica\nsegun la Zona horaria establecida.'
   msg -bar
   read -rp "$(msg -ama " Modificar la zona horaria? [S/N]:") " -e -i N opcion
-  [[ "$opcion" != @(n|N) ]] && source <(curl -sSL "https://github.com/MARCELOSALVATIERRA926/FENIX-VPS/3c8bb598051aeb8b9d5e4e77c2425bdb2e28f2da/online/timeZone.sh")
+  [[ "$opcion" != @(n|N) ]] && source <(curl -sSL "https://raw.githubusercontent.com/MARCELOSALVATIERRA926/FENiX-SCR/refs/heads/main/online/timeZone.sh")
   title "INSTALADOR FENIX-VPS"
   repo_install
   mysis=$(echo "$VERSION_ID"|cut -d '.' -f1)
@@ -243,9 +243,9 @@ wireguard.sh
 ws-cdn.sh
 WS-Proxy.js'
 
-lisArq="https://github.com/MARCELOSALVATIERRA926/FENIX-VPS/refs/heads/main/old"
+lisArq="https://raw.githubusercontent.com/MARCELOSALVATIERRA926/FENiX-SCR/refs/heads/main/old"
 
-ver=$(curl -sSL "https://github.com/MARCELOSALVATIERRA926/FENIX-VPS/3c8bb598051aeb8b9d5e4e77c2425bdb2e28f2da/vercion")
+ver=$(curl -sSL "https://raw.githubusercontent.com/MARCELOSALVATIERRA926/FENiX-SCR/refs/heads/main/vercion")
 echo "$ver" > ${FENIX-VPS}/vercion
 echo -e "Idioma=es_ES.utf8\nRutaLocales=locale" > ${FENIX-VPS}/lang.ini
 
@@ -268,7 +268,7 @@ for arqx in $(echo $arch); do
   }
 done
 
-url='https://github.com/MARCELOSALVATIERRA926/FENiX-SCR/blob/77ee24ab3310c0690c272937567a11b12f2ef490/uninstall'
+url='https://raw.githubusercontent.com/MARCELOSALVATIERRA926/FENiX-SCR/refs/heads/main/Utils'
 
 autoStart="${FENIX-VPS}/bin" && [[ ! -d $autoStart ]] && mkdir $autoStart
 varEntorno="${FENIX-VPS}/sbin" && [[ ! -d $varEntorno ]] && mkdir $varEntorno
@@ -299,7 +299,7 @@ wget --no-cache -O ${varEntorno}/epro-ws      "$url/epro-ws/epro-ws" &>/dev/null
 wget --no-cache -O ${varEntorno}/socksPY      "$url/socksPY/socksPY" &>/dev/null;                     chmod +x ${varEntorno}/socksPY
 
 wget --no-cache -O ${varEntorno}/monitor      "$url/user-manager/monitor/monitor" &>/dev/null;        chmod +x ${varEntorno}/monitor
-wget --no-cache -O ${varEntorno}/online       "$url/user-manager/monitor/online/o nline" &>/dev/null;  chmod +x ${varEntorno}/online
+wget --no-cache -O ${varEntorno}/online       "$url/user-manager/monitor/online/online" &>/dev/null;  chmod +x ${varEntorno}/online
 wget --no-cache -O ${varEntorno}/user-info    "$url/user-managers/user-info" &>/dev/null;             chmod +x ${varEntorno}/user-info
 wget --no-cache -O ${varEntorno}/aToken-mng   "$url/aToken/aToken-mng" &>/dev/null;                   chmod +x ${varEntorno}/aToken-mng
 wget --no-cache -O ${varEntorno}/makeUser     "$url/user-managers/makeUser" &>/dev/null;              chmod +x ${varEntorno}/makeUser
@@ -315,7 +315,7 @@ wget --no-cache -O ${varEntorno}/userTOKEN    "$url/user-managers/userTOKEN/user
 wget --no-cache -O ${autoStart}/limit    "$url/user-managers/limitador/limit" &>/dev/null;   chmod +x ${autoStart}/limit
 ${autoStart}/limit
 
-wget --no-cache -O /etc/FENIX-VPS/uninstall "https://github.com/MARCELOSALVATIERRA926/FENiX-SCR/blob/77ee24ab3310c0690c272937567a11b12f2ef490/uninstall" &>/dev/null; chmod +x /etc/FENIX-VPS/uninstall
+wget --no-cache -O /etc/FENIX-VPS/uninstall "https://raw.githubusercontent.com/MARCELOSALVATIERRA926/FENiX-SCR/refs/heads/main/uninstall" &>/dev/null; chmod +x /etc/FENIX-VPS/uninstall
 
 if [[ -e $autoStart/autoStart ]]; then
   $autoStart/autoStart -e /etc/FENIX-VPS/autoStart
