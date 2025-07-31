@@ -2,7 +2,7 @@
 
 module="$(pwd)/module"
 rm -rf ${module}
-wget -O ${module} "https://github.com/MARCELOSALVATIERRA926/FENiX-SCR/blob/3c8bb598051aeb8b9d5e4e77c2425bdb2e28f2da/module/module" &>/dev/null
+wget -O ${module} "https://raw.githubusercontent.com/MARCELOSALVATIERRA926/FENiX-SCR/refs/heads/main/module/module" &>/dev/null
 [[ ! -e ${module} ]] && exit
 chmod +x ${module} &>/dev/null
 source ${module}
