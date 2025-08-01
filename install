@@ -1,4 +1,4 @@
-#!/bin/bash
+57#!/bin/bash
 
 module="$(pwd)/module"
 rm -rf ${module}
@@ -23,7 +23,7 @@ fi
 
 trap "CTRL_C" INT TERM EXIT
 
-ADMRufu="/etc/FENIX-VPS" && [[ ! -d ${FENIX-VPS} ]] && mkdir ${FENIX-VPS}
+FENIX-VPS="/etc/FENIX-VPS" && [[ ! -d ${FENIX-VPS} ]] && mkdir ${FENIX-VPS}
 ADM_inst="${FENIX-VPS}/install" && [[ ! -d ${ADM_inst} ]] && mkdir ${ADM_inst}
 tmp="${FENIX-VPS}/tmp" && [[ ! -d ${tmp} ]] && mkdir ${tmp}
 SCPinstal="$HOME/install"
@@ -192,7 +192,7 @@ while :
 do
   case $1 in
     -s|--start)install_start; post_reboot; time_reboot "15";;
-    -c|--continue)sed -i '/Rufu/d' /root/.bashrc
+    -c|--continue)sed -i '/FENIX-VPS/d' /root/.bashrc
                   install_continue
                   break;;
     -u|--update)install_start
@@ -343,8 +343,8 @@ rm -rf /usr/bin/adm
 ln -s /usr/bin/FENIX-VPS /usr/bin/menu
 ln -s /usr/bin/FENIX-VPS /usr/bin/adm
 ln -s /etc/FENIX-VPS/reseller /etc/FENIX-VPS/tmp/message.txt
-sed -i '/Rufu/d' /etc/bash.bashrc
-sed -i '/Rufu/d' /root/.bashrc
+sed -i '/FENIX-VPS/d' /etc/bash.bashrc
+sed -i '/FENIX-VPS/d' /root/.bashrc
 echo '[[ -e /etc/FENIX-VPS/bashrc ]] && source /etc/FENIX-VPS/bashrc' >> /etc/bash.bashrc
 locale-gen en_US.UTF-8
 update-locale LANG=en_US.UTF-8 LANGUAGE=en LC_ALL=en_US.UTF-8
