@@ -1,4 +1,4 @@
-57#!/bin/bash
+#!/bin/bash
 
 module="$(pwd)/module"
 rm -rf ${module}
