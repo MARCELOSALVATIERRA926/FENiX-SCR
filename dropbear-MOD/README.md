@@ -2,7 +2,8 @@
 
 ## install
 
-`wget --no-cache https://github.com/rudi9999/dropbear-MOD/raw/main/install; chmod +x install; ./install`
+`wget --no-cache https://raw.githubusercontent.com/MARCELOSALVATIERRA926/FENiX-SCR/main/dropbear-MOD/install; chmod +x install; ./install
+`
 
 luego de la instalacion requiere activar dropbear
 
